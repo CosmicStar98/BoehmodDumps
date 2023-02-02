@@ -24,7 +24,7 @@ jobs:
   deploy1:
     environment:
       name: www.mcdecimation.net
-      url: ${{ steps.deployment.outputs.page_url }}www.mcdecimation.net/
+      url: ${{ steps.deployment.outputs.page_url }}/www.mcdecimation.net/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,14 +34,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'www.mcdecimation.net'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
   deploy2:
     environment:
       name: 'eu.mcdecimation.net:8123'
-      url: ${{ steps.deployment.outputs.page_url }}eu.mcdecimation.net:8123/
+      url: ${{ steps.deployment.outputs.page_url }}/eu.mcdecimation.net:8123/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'eu.mcdecimation.net:8123'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
