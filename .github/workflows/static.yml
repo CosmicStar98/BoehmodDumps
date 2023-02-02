@@ -24,7 +24,7 @@ jobs:
   # Single deploy job since we're just deploying
   deploy_dump_1:
     environment:
-      name: www.mcdecimation.net
+      name: 'www.mcdecimation.net'
       url: ${{ steps.deployment.outputs.page_url }}/www.mcdecimation.net/
     runs-on: ubuntu-latest
     steps:
@@ -43,7 +43,7 @@ jobs:
     # Single deploy job since we're just deploying
   deploy_dump_2:
     environment:
-      name: eu.mcdecimation.net:8123
+      name: 'eu.mcdecimation.net:8123'
       url: ${{ steps.deployment.outputs.page_url }}/eu.mcdecimation.net:8123/
     runs-on: ubuntu-latest
     steps:
