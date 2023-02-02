@@ -407,12 +407,12 @@ DynMap.prototype = {
 			.hide()
 			.appendTo(container);
 
-		if((dynmapversion != me.options.coreversion) && (dynmapversion.indexOf("-Dev") < 0)) { // Disable on dev builds
+		/*if((dynmapversion != me.options.coreversion) && (dynmapversion.indexOf("-Dev") < 0)) { // Disable on dev builds
 			me.alertbox
 				.text('Web files are not matched with plugin version: All files need to be same version (' + me.options.dynmapversion + ') - try refreshing browser cache (shift-reload)')
 				.show();
 			return;
-		}
+		}*/
 
 		me.initLogin();
 
@@ -710,9 +710,10 @@ DynMap.prototype = {
 				me.lasttimestamp--;	// Avoid same TS URL
 				me.missedupdates++;
 				if(me.missedupdates > 2) {
-					me.alertbox
+					/*me.alertbox
 						.text('Could not update map: ' + (statusText || 'Could not connect to server'))
-						.show();
+						.show();*/
+					console.warn('Could not update map: ' + (statusText || 'Could not connect to server'))
 					$(me).trigger('worldupdatefailed');
 				}
 				setTimeout(function() { me.update(); }, me.options.updaterate);
