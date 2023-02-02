@@ -22,10 +22,10 @@ concurrency:
 
 jobs:
   # Single deploy job since we're just deploying
-  deploy1:
+  deploy_dump_1:
     environment:
-      name: github-pages1
-      url: ${{ steps.deployment.outputs.page_url }}/eu.mcdecimation.net:8123/
+      name: www.mcdecimation.net
+      url: ${{ steps.deployment.outputs.page_url }}/www.mcdecimation.net/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,10 +41,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
     # Single deploy job since we're just deploying
-  deploy2:
+  deploy_dump_2:
     environment:
-      name: github-pages2
-      url: ${{ steps.deployment.outputs.page_url }}/www.mcdecimation.net/
+      name: eu.mcdecimation.net:8123
+      url: ${{ steps.deployment.outputs.page_url }}/eu.mcdecimation.net:8123/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
