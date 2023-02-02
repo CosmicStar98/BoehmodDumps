@@ -1,0 +1,666 @@
+Release Notes:
+---------------------------------
+&7Want more Updates and Changelogs?
+&7Follow us @MCDecimation!
+---------------------------------
+&7Version 0.87f &aNew!
+- Fixed vehicle damage glitch
+- Fixed community server list
+- Added Grip to MTP
+- Added new Profile Features to Discord
+---------------------------------
+&7Version 0.86f
+- Added Ghillie Suit
+- Fixed networking
+- Fixed issues with Vehicles
+---------------------------------
+&7Version 0.85f
+- Added Ghillie Suit
+- Tweaked Smoke/Emitter Movement
+- Updated Networking Libraries
+---------------------------------
+&7Version 0.84f
+- Added new Emitter Entities to Vehicles
+- Fixed issues with Networking
+---------------------------------
+&7Version 0.83f
+- Added new sounds for M35 Truck
+- Fixed veihlces not going up blocks
+- Fixed M35 Truck
+- Fixed small networking issues
+---------------------------------
+&7Version 0.82f
+- Added new Tracer Powder
+- Added Tracer Powder to Skin Trader
+- Added Tracer Slot to Weapon Mod UI
+- Removed Jug from Bandits
+- Fixed networking issues client-side
+- Fixed community server list
+---------------------------------
+&7Version 0.81f
+- Added new Tactical Combat Hats
+- Fixed issues with pants rendering
+- Fixed issues with secret scary mode
+- Fixed trade exploit with handguns
+---------------------------------
+&7Version 0.80f
+- Added new Weapon Skins
+- Bullet trails now cast in air
+- Fixed bandit rendering bug
+- Fixed zombie random skins
+- Fixed zombie movement and AI
+---------------------------------
+&7Version 0.79f
+- Added new bullet tracers
+- Added new skins to Bandits
+- Changed weapon trader prices/items
+- Fixed sapper vest
+---------------------------------
+&7Version 0.78f
+- Added FN SCAR-H
+- Added new Weapon Sounds
+- Fixed issues with bandit corpses
+- Fixed issues with main menu disconnection
+---------------------------------
+&7Version 0.77f
+- Added new Environmental Sound Engine
+- Added new Weapon Sounds
+- Fixed bandit shooting behind walls
+---------------------------------
+&7Version 0.76f &aNew!
+- Added new armors for Bandit
+- Added new weapons for Bandits
+- Added friendly-ish Bandits
+- Added Loot to Bandits
+- Added Corpses to Bandits
+- Added indoors weapon sound effect
+- Changed bullet sonic snap volume
+- Changed bandit movement and AI
+- Changed various weapon distant gunshots
+---------------------------------
+&7Version 0.75f
+- Added new Bandit AI
+- Bandits spawn with a random gun
+- Bandits now have proper animations
+- Added new sounds for various Weapons
+- Added new Clans cached data system
+---------------------------------
+&7Version 0.74f
+- Added new Ambience Sounds
+- Added new Weather/Environment Sounds
+- Added Environmental Fog/Density
+- Fixed small seat sizes
+---------------------------------
+&7Version 0.73f_fix &6Fix
+- Fixed vehicle explosion crash
+- Fixed management server connectivity
+---------------------------------
+&7Version 0.73f
+- Added realistic fire effects to Vehicles
+- Added realistic grenade smoke/fire effects
+- Added explosion flash effects
+- Fixed vehicle seat positioning
+---------------------------------
+&7Version 0.72f
+- Added M35 Truck
+- Changed Main menu Music
+---------------------------------
+&7Version 0.71f
+- Fixed strange tracking delay on Vehicles
+---------------------------------
+&7Version 0.70f
+- Added entity tracking to Vehicle entities
+---------------------------------
+&7Version 0.69f
+- Added experimental vehicle fix
+- Fixed issues with network connection
+---------------------------------
+&7Version 0.68f
+- Changed Buycraft Donation Link
+---------------------------------
+&7Version 0.67f
+- Fixed vehicles
+- Fixed notification timer
+---------------------------------
+&7Version 0.66f
+- Added more custom emblems
+- Added Profile Inspector (press U)
+- Fixed road slab blocks
+---------------------------------
+&7Version 0.65f
+- Added Emblems
+- Added Community button to Menu
+- Fixed capes preferences not saving
+- Fixed news notification (red !!!'s)
+- Fixed notification speed
+- Fixed lag on main menu
+---------------------------------
+&7Version 0.64f
+- Added Storage Crate
+- Added Menu Notification Icon
+- Rockets/Grenades damage fortification
+- Fixed small punch crash issue
+---------------------------------
+&7Version 0.63f
+- Changed distant weapon sounds
+- Fixed custom inventory crash
+- Fixed reload inventory crash
+- Fixed disable main menu crash
+---------------------------------
+&7Version 0.62f &aNew!
+- Added nice labels to gui slots
+- Added new tips to inventory ui
+- Fixed textures on 9x19mm rounds
+- Fixed speech bubble not showing
+- Fixed supporter cape not changing
+- Fixed several anti-cheat issues
+- Removed custom world biomes
+---------------------------------
+&7Version 0.61f
+- Added prop optimization
+- Added rendering optimization
+- Added "disableLootDownload" option
+- Added "disableClanTags" option
+- Added "disableClimbing" option
+- Added various Road blocks
+- Added LAN button to In-game Menu
+- Added plugin-friendly data fetch
+- Added server list ping filter
+- Changed menu background effect
+- Changed delay on Uzi
+- Changed damage from SVD
+- Fixed internal error when re-spawning
+- Fixed turf spam on Community servers
+---------------------------------
+&7Version 0.60f_fix &6Fix
+- Fixed spammy weapon sound
+- Fixed head rendering with gestures
+---------------------------------
+&7Version 0.60f
+- Added dab gesture
+- Added buggy vehicle
+- Added Suomi KP-31
+- Added 9x19mm Rounds
+- Fixed natural vehicle spawning
+- Changed vehicle prices
+- Changed muzzle smoke duration
+- Removed ATV from Conv trader
+---------------------------------
+&7Version 0.59f
+- Added variants to menu music
+- Added black marine armor
+- Added vehicle sound variants
+- Buffed L115A3
+- Fixed update checker
+- Fixed vehicle crash issue
+---------------------------------
+&7Version 0.58f_fix2 &6Fix
+- Fixed random crash with vehicles
+---------------------------------
+&7Version 0.58f_fix &6Fix
+- Fixed vehicle damage
+- Fixed vehicle throttle
+- Fixed vehicle rotation
+- Nerfed juggernaut slightly
+---------------------------------
+&7Version 0.58f &aNew!
+- Added Car Dealer
+- Fixed sights on FAL
+- Fixed damage issues
+---------------------------------
+&7Version 0.57f
+- Added SVT-40
+- Added extra seat to ATV
+- Added several items to Loot Table
+- Buffed Juggernaut Armor
+- Fixed no damage bug
+- Fixed uzi suppressor positioning
+- Fixed positions on weapon scopes
+- Removed several items from Traders
+&8Note: New vehicle mechanics are experimental!
+----------------------------------------
+&7Version 0.56f_fix2 &6Fix
+- Fixed issues mod rejections
+----------------------------------------
+&7Version 0.56f_fix &6Fix
+- Fixed issues with firearms
+---------------------------------
+&7Version 0.56f
+- Added tire stack block
+- Added UAHD and USSR flags
+- Changed flags on Spetsnaz Armor
+- Changed marine armor
+- Changed uzi sounds
+- Changed uzi fire rate
+- Set uzi mag capacity to 32
+---------------------------------
+&7Version 0.55f
+- Added new Menu Music
+- Added new Washing Machine sounds
+- Nerfed Sell prices of Substances
+- Fixed data-sync issues
+- Fixed networking issues
+----------------------------------------
+&7Version 0.54f_fix &6Fix
+- Fixed trimmer scissors name
+- Fixed new props server-side error
+- Fixed issues with cocaine items
+---------------------------------
+&7Version 0.54f
+- Added new Drug Dealer
+- Added new Bandit Gun Dealer
+- Added Hedge Trimmers
+- Added new Cocaine Tools
+- Fixed issues relating to Clans
+- Fixed various playerdata issues
+----------------------------------------
+&7Version 0.52f_fix/fix2 &6Fix
+- Fixed speech bubbles not showing
+---------------------------------
+&7Version 0.52f
+- Added chat bubble in Safezones
+- Added more Sandbags to Sandbag Kits
+- Added more B-Wire to B-Wire Kits
+- Fixed issues with Stances
+----------------------------------------
+&7Version 0.51f_fix4 &6Fix
+- Fixed loot config file not loading
+- Fixed clan manager not refreshing clans
+----------------------------------------
+&7Version 0.51f_fix3 &6Fix
+- Fixed servere-side lag issues
+----------------------------------------
+&7Version 0.51f_fix2 &6Fix
+- Fixed small Server-side lag issues
+----------------------------------------
+&7Version 0.51f_fix &6Fix
+- Added Dynamic Main Menu
+- Fixed updater issues
+- Fixed ResourcePack issues
+---------------------------------
+&7Version 0.51f
+- Added crawler infected
+- Added resourcepack download to Options
+- Added new BeastNode image to menu
+- Added new music to Radio
+- Removed parent lock option
+---------------------------------
+&7Version 0.50f
+- Updated Management Server
+- Fixed updating server-side
+---------------------------------
+&7Version 0.49f
+- Added new Skin Trader
+- Added new Karabiner 98k
+- Added new M1 Garand model
+- Added optimization for Updating
+----------------------------------------
+&7Version 0.48f_fix &6Fix
+- Fixed small issue relating to Updater
+---------------------------------
+&7Version 0.48f
+- Fixed updater
+- Added new updater UI
+---------------------------------
+&7Version 0.47f
+- Added in-game Supporter Lounge
+- Fixed small issue with Battlegrounds
+- Optimized specific parts of code
+----------------------------------------
+&7Version 0.46f_fix &6Fix
+- Fixed issues with Battlegrounds
+- Fixed issues with Downloading
+---------------------------------
+&7Version 0.46f
+- Updated Management Server
+- Added broadcast feature from Management Server
+- Added Anticheat notification
+- Fixed Prone/Crouching (Finally)
+- Fixed issues relating to Battlegrounds
+----------------------------------------
+&7Version 0.45f
+- Added JNG-90
+- Fixed battlegrounds inventory clearing
+- Fixed battlegrounds find match
+- Fixed battlegrounds hurting after win
+- Fixed battlegrounds XP from dying as Spectator
+----------------------------------------
+&7Version 0.44f
+- Completely finished Battlegrounds Mechanics
+- Added Marshmallows Bag
+- Added new Battlegrounds client-side features
+----------------------------------------
+&7Version 0.43f
+- Added new Battlegrounds loot to chests
+- Added new border rendering to Battlegrounds
+- Fixed Battlegrounds matchmaking issues
+- Fixed Battlegrounds final border
+----------------------------------------
+&7Version 0.42f
+- Final additions to Battlegrounds today
+- Fixed battlegrounds spamming Discord
+----------------------------------------
+&7Version 0.41f
+- Added new Battlegrounds Features
+- Updated libraries
+- Updated Discord Bot libraries
+----------------------------------------
+&7Version 0.40f_fix4 &6Fix
+- Added new Battlegrounds features
+----------------------------------------
+&7Version 0.40f_fix/0.40f_fix2/0.40f_fix3 &6Fix
+- Fixed issues with Anticheat
+- Fixed parachute issues
+- Fixed issues with Battlegrounds
+----------------------------------------
+&7Version 0.40f
+- Added new support cape designs
+- Added Battlegrounds gamemode (experimental)
+- Fixed community server list
+----------------------------------------
+&7Version 0.39f_fix &6Fix
+- Fixed corpse textures
+- Fixed update manager
+----------------------------------------
+&7Version 0.39f
+- Added bandit mob
+- Fixed gun sounds
+- Fixed missing textures
+----------------------------------------
+&7Version 0.38f
+- Added support for out-of-date versions
+- Optimized common event handling
+- Fixed shoot sounds for weapons
+- Fixed prone next to a sign/wall-sign
+- Fixes for network
+- Fixes for grenade crash exploit
+----------------------------------------
+&7Version 0.37f
+- Added MPT-76
+- Added Hummer (Experimental)
+- Added new Metal Wall prop
+- Added Scopes/Sights to Crossbow
+- Fixed various rendering bugs
+----------------------------------------
+&7Version 0.36f
+- Added smoke effect when firing RPG-18
+- Added *new* supporter cape variants
+- Fixed suppressed weapon sounds
+- Fixed supporter cape on re-spawn
+----------------------------------------
+&7Version 0.35f_fix &6Fix
+- Fixed server-side gun crash
+----------------------------------------
+&7Version 0.35f
+- New weapon sounds
+- New weapon distant/close sounds
+- New environmental sounds
+- New visual effects with weapons
+- Bass boost on weapon sounds
+----------------------------------------
+&7Version 0.34f_fix &6Fix
+- Fixed small crash issue with NV Goggles
+----------------------------------------
+&7Version 0.34f
+- Added Medical Marine Armor
+- Added Mod Versions to Community Server List
+- Fixed NV Goggles
+- Fixed Main Menu graphics
+- Fixed muzzle flash rendering issues
+- Fixed small typo's with various Items
+----------------------------------------
+&7Version 0.33f &6Fix
+- Fixed issues with connecting to MGMT Server
+----------------------------------------
+&7Version 0.33f
+- Added Decimation log feature
+- Updated community server list
+- Updated server list rendering
+----------------------------------------
+&7Version 0.32f_fix &6Fix
+- Applied huge update to Network Libraries
+----------------------------------------
+&7Version 0.32f
+- Added new block crack effect from shooting
+- Fixed issues relating to capes
+- Fixed returns on threaded methods
+----------------------------------------
+&7Version 0.31f
+- Added Supporter Cape
+----------------------------------------
+&7Version 0.30f_fix/2/3/4 &6Fix
+- Fixed problems with Aut Command
+- Fixed small issues with Lag
+- Fixed issues relating to Mgmt Server
+----------------------------------------
+&7Version 0.30f
+- Huge new Implementation to Mgmt Server
+----------------------------------------
+&7Version 0.29f_fix &6Fix
+- Fixed issues with Management Server
+- Fixed Anticheat with Optifine
+- Fixed issues relating to Main Menu
+----------------------------------------
+&7Version 0.29f
+- Added RPG-18
+- Implemented new Anti-cheat Features
+----------------------------------------
+&7Version 0.28f
+- Added RPG-7
+- Added Beretta M1934
+- Fixed Crouch/Prone in Liquids
+----------------------------------------
+&7Version 0.27f
+- Added some more Anti-cheat Protection
+- Added Optifine capabilities
+
+- Fixed issues relating to new Turret
+
+- Removed Rogue and Placeable Turrets
+----------------------------------------
+&7Version 0.26f
+- Added Rogue Turret
+- Added Placeable Turret (Experimental)
+- Fixed Proning/Stance in Tunnels/Holes
+- Fixed small issues with Turrets
+- Fixed issues relating to Skin Rendering
+----------------------------------------
+&7Version 0.25f_fix &6Fix
+- Fixed crashes relating to Turret
+----------------------------------------
+&7Version 0.24f
+- Added Turret Entity
+- Added new Weapon Skins (Experimental)
+- Fixed Anti-cheat
+----------------------------------------
+&7Version 0.24f
+- Added Spray Cans
+- Added Weapon Skin Modification
+- Edited various Minecraft Textures
+- Fixed Anti-cheat
+- Fixed Crossbow
+----------------------------------------
+&7Version 0.23f
+- Added Frail Mob
+- Added Ammunition Check to Server-side
+- Added "enableInventorySync" Server Config Option
+
+- Fixed Client Network Connection Instance
+
+- Optimised Player Data
+- Reformatted Code
+----------------------------------------
+&7Version 0.22f
+- Decreased firerate of Crossbow
+- Added new Debug Mode for Server Owners
+----------------------------------------
+&7Version 0.21f
+- Added new Metal Blocks
+- Added new Metal Sounds
+- Added old Environment Textures
+- Fixed Crossbow Spam
+- Fixed Anti-cheat Features
+----------------------------------------
+&7Version 0.20f
+- Added Flare Effect (Prototype)
+- Fixed Crossbow
+- Fixed VPN Protection
+----------------------------------------
+&7Version 0.19f
+- Added Crossbow
+- Added VPN Protection (Server-configurable)
+- Added Crossbow Rendering to Player Model
+- Fixed Revolver ammunition bug
+----------------------------------------
+&7Version 0.18f
+- Added new Holstering Mechanism to Players
+- Fixed Screenshot registry
+----------------------------------------
+&7Version 0.17f
+- Fixed small Kick Exploitation
+- Fixed Bottlecaps Give Command
+- Added /clan info <clanName> Command
+----------------------------------------
+&7Version 0.16f_fix3 &6Fix
+- Fixed issues with random Kicking on Death
+----------------------------------------
+&7Version 0.16f_fix2 &6Fix
+- Fixed Spam Issues relating to Packets
+- Fixed Console Spam Issues
+----------------------------------------
+&7Version 0.16f_fix &6Fix
+- Fixed issues relating to Packet Exploits
+----------------------------------------
+&7Version 0.16f
+- Fixed Bottle Caps Exploitation
+- Fixed Anti-cheat Exploitation
+- Fixed Packet Exploitation
+- Fixed issues relating to Zombie AI
+----------------------------------------
+&7Version 0.15f
+- Fixed Corpses Glitches
+----------------------------------------
+&7Version 0.14f
+- Added fixes for Corpses
+----------------------------------------
+&7Version 0.13f
+- Added Cap on Bottle Caps (1,500,000 limit)
+- Only 1 person can Loot a corpse at once
+&f- &fAdded &fthe &4&kPower of Death
+----------------------------------------
+&7Version 0.13f
+- Added new Block/Prop Variants
+----------------------------------------
+&7Version 0.12f
+- Added new textures for armor (Slightly)
+- Added new Server-side configurations
+- Fixed Anti-cheat-related Issues
+----------------------------------------
+&7Version 0.11f_fix &6Fix
+- Fixed Anti-cheat
+----------------------------------------
+&7Version 0.11f
+- Added Flashlight, Suppressor etc for SMGs
+- Added Parachute Item
+- Fixed some Rendering Issues with Guns
+- Fixed NV Goggles Positioning
+----------------------------------------
+&7Version 0.10f
+- Added Clan Chat Command
+- Added fix for 1.8+ users
+- Added AK12 and Glock 17 to Traders
+- Updated Minigun Prices
+----------------------------------------
+&7Version 0.9f
+- Added AK12
+- Added Glock 17
+- Added Clan promotion/demotion
+- Added Officer rank for Clans
+- Added more Clan Commands
+- Fixed issues relating to Weapon Rendering
+- Removed Rendering of Grenades on Body
+----------------------------------------
+&7Version 0.8f_fix &6Fix
+- Fixed problems relating to Loot Config
+----------------------------------------
+&7Version 0.8f
+- Optimised Weapon Rendering
+- Optimised Clothing Rendering
+
+- Added Black Market Dealer
+- Added new Menu Notification Timer
+----------------------------------------
+&7Version 0.7f_fix &6Fix
+- Fixed small server-sided crash
+----------------------------------------
+&7Version 0.7f
+- Added Combat Knife
+- Added Baseball Bat
+- Added Nailed Baseball Bat
+- Added new Crowbar Model/Texture
+- Added Splint
+- Added Target Texture
+- Added Target Screen Texture
+- Added Machete
+- Added Helicopter Wreckage Prop
+
+- Fixed lore on Cure Syringe
+- More Player Render Optimisation
+- Prevent non-opped turf removal
+- Infected now drop Infected Flesh
+----------------------------------------
+&7Version 0.6f_fix2 &6Fix
+- Fixed 32bit Message
+- Fixed Item Syncing
+----------------------------------------
+&7Version 0.6f_fix &6Fix
+- Fixed invisible players/props bugs
+----------------------------------------
+&7Version 0.6f
+- Added Flashlight Attachments
+- Added Cool Flashlight Visual Effect
+- Added new Optimisation Methods
+- Added new Menu RAM Check
+- Added Message on expand.up/down commands
+
+- Removed restrain on Turf Traders
+----------------------------------------
+&7Version 0.5f
+- Fixes
+----------------------------------------
+&7Version 0.4f
+- Added Place-able Sandbag Kits
+- Added Clan Enemies command
+----------------------------------------
+&7Version 0.3f
+- Fixed small crash issue effecting players
+- Fixed ban list
+----------------------------------------
+&7Version 0.2f_fix &6Fix
+- NV Goggles now help in Scary/Foggy Zones
+- Server Owners can now see Vehicle Spawns
+
+- Fixed Fog Crash
+----------------------------------------
+&7Version 0.2f &aOfficial!
+- Added new Turf Animations
+- Added Heartbeat Effect
+
+- Fixed Water/Thirst
+- Fixed Server-side Console Spam
+
+- Reset Turfs when Clan is Disbanded
+- Fixed fog issue with Water
+----------------------------------------
+&7Version 0.1f
+- Added Turfs for Clans
+- Added Snow Armor
+
+- Changed Menu Music
+- Changed various Menu backgrounds
+- Changed various Sounds
+- Changed multiple Snow-themed Textures
+----------------------------------------
+&7You can view Alpha Updates on our Site:
+&chttp://www.mcdecimation.net/forums/
+----------------------------------------

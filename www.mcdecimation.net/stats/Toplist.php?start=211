@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decimation | Stats</title>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="phpcss/jquery.fileupload-ui.css">
+<link rel="stylesheet" type="text/css" href="phpcss/pvpwebstats2.css">
+<script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="jqueryfileupload/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="jqueryfileupload/jqueryfileupload.min.js"></script>
+<script type="text/javascript">
+var EW_LANGUAGE_ID = "en";
+var EW_DATE_SEPARATOR = "/" || "/"; // Default date separator
+var EW_DECIMAL_POINT = ".";
+var EW_THOUSANDS_SEP = "";
+var EW_MAX_FILE_SIZE = 2000000; // Upload max file size
+var EW_UPLOAD_ALLOWED_FILE_EXT = "gif,jpg,jpeg,bmp,png,doc,xls,pdf,zip"; // Allowed upload file extension
+
+// Ajax settings
+var EW_LOOKUP_FILE_NAME = "ewlookup10.php"; // Lookup file name
+var EW_AUTO_SUGGEST_MAX_ENTRIES = 10; // Auto-Suggest max entries
+
+// Common JavaScript messages
+var EW_DISABLE_BUTTON_ON_SUBMIT = true;
+var EW_IMAGE_FOLDER = "phpimages/"; // Image folder
+var EW_UPLOAD_URL = "ewupload10.php"; // Upload url
+var EW_UPLOAD_THUMBNAIL_WIDTH = 200; // Upload thumbnail width
+var EW_UPLOAD_THUMBNAIL_HEIGHT = 200; // Upload thumbnail height
+var EW_USE_JAVASCRIPT_MESSAGE = false;
+var EW_IS_MOBILE = false;
+</script>
+<script type="text/javascript" src="phpjs/jsrender.min.js"></script>
+<script type="text/javascript" src="phpjs/ewp10.js"></script>
+<script type="text/javascript" src="phpjs/userfn10.js"></script>
+<script type="text/javascript">
+var ewLanguage = new ew_Language({"deleteconfirmmsg":"Do you want to delete this record?","deletemulticonfirmmsg":"Do you want to delete the selected records?","enternewpassword":"Please enter new password","enteroldpassword":"Please enter old password","enterpassword":"Please enter password","enterpwd":"Please enter password","enterrequiredfield":"Please enter required field","enterusername":"Please enter username","entervalidatecode":"Please enter the validation code shown","entersenderemail":"Please enter sender email","enterpropersenderemail":"Exceed maximum sender email count or email address incorrect","enterrecipientemail":"Please enter recipient email","enterproperrecipientemail":"Exceed maximum recipient email count or email address incorrect","enterproperccemail":"Exceed maximum cc email count or email address incorrect","enterproperbccemail":"Exceed maximum bcc email count or email address incorrect","entersubject":"Please enter subject","enteruid":"Please enter user ID","entervalidemail":"Please enter valid Email Address!","exporttoemail":"Email","exporttoemailtext":"Email","hidehighlight":"Hide highlight","incorrectemail":"Incorrect email","incorrectfield":"Incorrect field","incorrectfloat":"Incorrect floating point number","incorrectguid":"Incorrect GUID","incorrectinteger":"Incorrect integer","incorrectphone":"Incorrect phone number","incorrectregexp":"Regular expression not matched","incorrectrange":"Number must be between %1 and %2","incorrectssn":"Incorrect social security number","incorrecttime":"Incorrect time (hh:mm:ss)","incorrectzip":"Incorrect ZIP code","insertfailed":"Insert failed","invalidrecord":"Invalid Record! Key is null","loading":"Loading...","maxfilesize":"Max. file size (%s bytes) exceeded.","messageok":"OK","mismatchpassword":"Mismatch Password","noaddrecord":"No records to be added","nofieldselected":"No field selected for update","norecordselected":"No records selected","pleasewait":"Please wait...","sendemailsuccess":"Email sent successfully","showhighlight":"Show highlight","uploading":"Uploading...","uploadstart":"Start","uploadcancel":"Cancel","uploaddelete":"Delete","uploadoverwrite":"Overwrite old file?","uploaderrmsgmaxnumberoffiles":"Maximum number of files exceeded","uploaderrmsgmaxfilelength":"Total length of file names exceeds field length","userleveladministratorname":"User level name for user level -1 must be 'Administrator'","userlevelidinteger":"User Level ID must be integer","userleveldefaultname":"User level name for user level 0 must be 'Default'","userlevelidincorrect":"User defined User Level ID must be larger than 0","userlevelnameincorrect":"User defined User Level name cannot be 'Administrator' or 'Default'","wrongfiletype":"File type is not allowed."});</script>
+<script type="text/javascript">
+
+// Write your client script here, no need to add script tags.
+</script>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://www.mcdecimation.net/stats/favicon.ico"><link rel="icon" type="image/vnd.microsoft.icon" href="http://www.mcdecimation.net/stats/favicon.ico">
+<meta name="generator" content="PHPMaker v10.0.1">
+</head>
+<body>
+<div class="ewLayout">
+	<!-- header (begin) --><!-- *** Note: Only licensed users are allowed to change the logo *** -->
+  <div id="ewHeaderRow" class="ewHeaderRow"><img src="phpimages/pvpstats.png" alt="" style="border: 0;">	</div>
+	<!-- header (end) -->
+	<!-- content (begin) -->
+	<table id="ewContentTable" cellspacing="0" class="ewContentTable">
+		<tr><td id="ewMenuColumn" class="ewMenuColumn">
+			<!-- left column (begin) -->
+<!-- Begin Main Menu -->
+<div class="ewMenu">
+<ul id="RootMenu" class="dropdown-menu">
+<li class="disabled"><a href="Toplist.php?cmd=resetall">Top Rank</a></li>
+<li><a href="Top_Killslist.php">Top Kills</a></li>
+</ul>
+</div>
+<!-- End Main Menu -->
+			<!-- left column (end) -->
+		</td>
+		<td id="ewContentColumn" class="ewContentColumn">
+			<!-- right column (begin) -->
+				<p class="ewSiteTitle">Decimation - Player Statistics</p>
+<script type="text/javascript">
+
+// Page object
+var Top_list = new ew_Page("Top_list");
+Top_list.PageID = "list"; // Page ID
+var EW_PAGE_ID = Top_list.PageID; // For backward compatibility
+
+// Form object
+var fToplist = new ew_Form("fToplist");
+fToplist.FormKeyCountName = 'key_count';
+
+// Form_CustomValidate event
+fToplist.Form_CustomValidate = 
+ function(fobj) { // DO NOT CHANGE THIS LINE!
+
+ 	// Your custom validation code here, return false if invalid. 
+ 	return true;
+ }
+
+// Use JavaScript validation or not
+fToplist.ValidateRequired = true;
+
+// Dynamic selection lists
+// Form object for search
+
+</script>
+<script type="text/javascript">
+
+// Write your client script here, no need to add script tags.
+</script>
+<table class="ewStdTable"><tr><td><ul class="breadcrumb"><li><a href="index.php">Home</a><span class="divider">/</span></li><li class="active"><span id="ewPageCaption">Top Rank</span></li></ul></td></tr></table><table class="ewStdTable"><tr><td><div class="ewMessageDialog"></div></td></tr></table><table cellspacing="0" class="ewGrid"><tr><td class="ewGridContent">
+<div class="ewGridUpperPanel">
+<form name="ewPagerForm" class="ewForm form-horizontal" action="Toplist.php">
+<table class="ewPager">
+<tr><td>
+<table cellspacing="0" class="ewStdTable"><tbody><tr><td>
+<div class="pagination"><ul>
+		<li><a href="Toplist.php?start=1">First</a></li>
+			<li><a href="Toplist.php?start=190">Previous</a></li>
+				<li><a href="Toplist.php?start=1">1-10</a></li>
+			<li class=" active"><a href="#">11</a></li>
+			<li><a href="Toplist.php?start=232">12</a></li>
+			<li><a href="Toplist.php?start=253">13</a></li>
+			<li><a href="Toplist.php?start=274">14</a></li>
+			<li><a href="Toplist.php?start=295">15</a></li>
+			<li><a href="Toplist.php?start=316">16</a></li>
+			<li><a href="Toplist.php?start=337">17</a></li>
+			<li><a href="Toplist.php?start=358">18</a></li>
+			<li><a href="Toplist.php?start=379">19</a></li>
+			<li><a href="Toplist.php?start=400">20</a></li>
+			<li><a href="Toplist.php?start=421">21-30</a></li>
+			<li><a href="Toplist.php?start=232">Next</a></li>
+			<li><a href="Toplist.php?start=3697">Last</a></li>
+	</ul></div>
+</td>
+<td>
+	&nbsp;&nbsp;&nbsp;&nbsp;	Records&nbsp;211&nbsp;to&nbsp;231&nbsp;of&nbsp;3697</td>
+</tr></tbody></table>
+</td>
+</tr></table>
+</form>
+<div class="ewListOtherOptions">
+</div>
+</div>
+<form name="fToplist" id="fToplist" class="ewForm form-horizontal" action="Toplist.php" method="post">
+<input type="hidden" name="t" value="Top">
+<div id="gmp_Top" class="ewGridMiddlePanel">
+<table class="ewMultiColumnTable">
+<tr>
+	<td valign="top" data-rowindex="1" id="r1_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/ONDROID2006/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+ONDROID2006</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el1_Top_sequence" class="Top_sequence">211.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="2" id="r2_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/DorixYT/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+DorixYT</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+12</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+11</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el2_Top_sequence" class="Top_sequence">212.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="3" id="r3_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/probow1/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+probow1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+35</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+29</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+27</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el3_Top_sequence" class="Top_sequence">213.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="4" id="r4_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/forbolacurve/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+forbolacurve</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+13</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+8</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+11</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el4_Top_sequence" class="Top_sequence">214.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="5" id="r5_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/Tjbossepic/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+Tjbossepic</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+10</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el5_Top_sequence" class="Top_sequence">215.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="6" id="r6_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/BADGERS73/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+BADGERS73</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+20</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+15</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+9</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el6_Top_sequence" class="Top_sequence">216.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="7" id="r7_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/OfficialDavid/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+OfficialDavid</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+21</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+16</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+18</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el7_Top_sequence" class="Top_sequence">217.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="8" id="r8_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/jakenater/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+jakenater</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+21</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+16</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+14</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el8_Top_sequence" class="Top_sequence">218.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="9" id="r9_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/Kyloren121/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+Kyloren121</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+9</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+4</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+8</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el9_Top_sequence" class="Top_sequence">219.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="10" id="r10_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/xXDarkestHeroXx/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+xXDarkestHeroXx</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+10</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el10_Top_sequence" class="Top_sequence">220.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="11" id="r11_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/smitth/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+smitth</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el11_Top_sequence" class="Top_sequence">221.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="12" id="r12_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/Bomb_/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+Bomb_</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+6</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el12_Top_sequence" class="Top_sequence">222.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="13" id="r13_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/FireCrotch1/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+FireCrotch1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+0</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+4</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el13_Top_sequence" class="Top_sequence">223.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="14" id="r14_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/EliteFox/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+EliteFox</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+72</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+67</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+27</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el14_Top_sequence" class="Top_sequence">224.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="15" id="r15_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/What_The_Quack/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+What_The_Quack</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+2</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+6</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el15_Top_sequence" class="Top_sequence">225.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="16" id="r16_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/vijil911/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+vijil911</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+8</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+3</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el16_Top_sequence" class="Top_sequence">226.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="17" id="r17_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/AridNA_Sniper/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+AridNA_Sniper</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+15</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+10</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+11</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el17_Top_sequence" class="Top_sequence">227.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="18" id="r18_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/ShiningMC/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+ShiningMC</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+8</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+3</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el18_Top_sequence" class="Top_sequence">228.</span></span></div>
+	</td>
+</tr>
+<tr>
+	<td valign="top" data-rowindex="19" id="r19_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/xPvPBear/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+xPvPBear</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+20</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+15</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el19_Top_sequence" class="Top_sequence">229.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="20" id="r20_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/indianajones1/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+indianajones1</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+0</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+4</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el20_Top_sequence" class="Top_sequence">230.</span></span></div>
+	</td>
+	<td valign="top" data-rowindex="21" id="r21_Top" data-rowtype="1">
+	<table class="table table-bordered table-striped">
+			<tr>
+			<td class="ewTableHeader"><span class="Top_division">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Rank:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+&nbsp;</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_Points">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Points</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span style="font-weight: bold;">
+5</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_skins">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;"></div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+<img src="http://minotar.net/helm/lllllll/50.png"></span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_name">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Survivor Name:</div>
+			</span></td>
+			<td style="white-space: nowrap;">
+<span>
+lllllll</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_kills">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Kills</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+7</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_deaths">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Deaths</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+2</span>
+</td>
+		</tr>
+				<tr>
+			<td class="ewTableHeader"><span class="Top_streak">
+				<div class="ewTableHeaderCaption" style="white-space: nowrap;">Streak</div>
+			</span></td>
+			<td style="white-space: nowrap;text-align: center;">
+<span>
+3</span>
+</td>
+		</tr>
+		</table>
+<div class="ewMultiColumnListOption">
+<span class="ewListOptionBody ewListOptionSeparator" style="white-space: nowrap;" data-name="sequence"><span id="el21_Top_sequence" class="Top_sequence">231.</span></span></div>
+	</td>
+</tr>
+</table>
+<input type="hidden" name="a_list" id="a_list" value="">
+</div>
+</form>
+<div class="ewGridLowerPanel">
+<form name="ewPagerForm" class="ewForm form-horizontal" action="Toplist.php">
+<table class="ewPager">
+<tr><td>
+<table cellspacing="0" class="ewStdTable"><tbody><tr><td>
+<div class="pagination"><ul>
+		<li><a href="Toplist.php?start=1">First</a></li>
+			<li><a href="Toplist.php?start=190">Previous</a></li>
+				<li><a href="Toplist.php?start=1">1-10</a></li>
+			<li class=" active"><a href="#">11</a></li>
+			<li><a href="Toplist.php?start=232">12</a></li>
+			<li><a href="Toplist.php?start=253">13</a></li>
+			<li><a href="Toplist.php?start=274">14</a></li>
+			<li><a href="Toplist.php?start=295">15</a></li>
+			<li><a href="Toplist.php?start=316">16</a></li>
+			<li><a href="Toplist.php?start=337">17</a></li>
+			<li><a href="Toplist.php?start=358">18</a></li>
+			<li><a href="Toplist.php?start=379">19</a></li>
+			<li><a href="Toplist.php?start=400">20</a></li>
+			<li><a href="Toplist.php?start=421">21-30</a></li>
+			<li><a href="Toplist.php?start=232">Next</a></li>
+			<li><a href="Toplist.php?start=3697">Last</a></li>
+	</ul></div>
+</td>
+<td>
+	&nbsp;&nbsp;&nbsp;&nbsp;	Records&nbsp;211&nbsp;to&nbsp;231&nbsp;of&nbsp;3697</td>
+</tr></tbody></table>
+</td>
+</tr></table>
+</form>
+<div class="ewListOtherOptions">
+</div>
+</div>
+</td></tr></table>
+<script type="text/javascript">
+fToplist.Init();
+</script>
+<script type="text/javascript">
+
+// Write your table-specific startup script here
+// document.write("page loaded");
+
+</script>
+			<!-- right column (end) -->
+					</td></tr>
+	</table>
+	<!-- content (end) -->
+	<!-- footer (begin) --><!-- *** Note: Only licensed users are allowed to remove or change the following copyright statement. *** -->
+	<div id="ewFooterRow" class="ewFooterRow">	
+		<div class="ewFooterText">Official Decimation - Player Statistics</div>
+		<!-- Place other links, for example, disclaimer, here -->		
+	</div>
+	<!-- footer (end) -->	
+</div>
+<!-- message box -->
+<div id="ewMsgBox" class="modal hide" data-backdrop="false"><div class="modal-body"></div><div class="modal-footer"><a href="#" class="btn btn-primary ewButton" data-dismiss="modal" aria-hidden="true">OK</a></div></div>
+<!-- tooltip -->
+<div id="ewTooltip"></div>
+<script type="text/javascript">
+
+// Write your global startup script here
+// document.write("page loaded");
+
+</script>
+</body>
+</html>

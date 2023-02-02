@@ -1,0 +1,16 @@
+{
+    "servers": {
+        "eu": {
+            "EU-BUKOVKA": { "motd": "Bukovka - §9EU", "ip": "eu.mcdecimation.net", "port": 25566, "type": "§aOfficial" },
+            "EU-NYC": { "motd": "NewYork City - §9EU", "ip": "eu.mcdecimation.net", "port": 25565, "type": "§aOfficial" },
+            "EU-BUKOVKA-CRACKED": { "motd": "Bukovka - §9EU §e[CRACKED]", "ip": "eu.mcdecimation.net", "port": 25568, "type": "§eCracked" },
+            "EU-NYC-CRACKED": { "motd": "NewYork City - §9EU §e[CRACKED]", "ip": "eu.mcdecimation.net", "port": 25570, "type": "§eCracked" }
+        },
+        "us": {
+            "US-BUKOVKA": { "motd": "Bukovka - §9US", "ip": "us.mcdecimation.net", "port": 25565, "type": "§aOfficial" },
+            "US-NYC": { "motd": "NewYork City - §9US", "ip": "us.mcdecimation.net", "port": 25566, "type": "§aOfficial" },
+            "US-BUKOVKA-CRACKED": { "motd": "Bukovka - §9US §e[CRACKED]", "ip": "us.mcdecimation.net", "port": 25569, "type": "§eCracked" },
+            "US-NYC-CRACKED": { "motd": "NewYork City - §9US §e[CRACKED]", "ip": "us.mcdecimation.net", "port": 25570, "type": "§eCracked" }
+        }
+    }
+}
